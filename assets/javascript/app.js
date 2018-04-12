@@ -31,49 +31,62 @@ var questions = [
     }
 ]
 
-
 var correctAnswer = ["A answer1", "B answer2", "C answer3", "D answer4"]
 
-function displayQuestion () {
-    document.getElementById("question").textContent = questions[x].question
-    document.getElementById("answer1").textContent = questions[x].answer1
-    document.getElementById("answer2").textContent = questions[x].answer2
-    document.getElementById("answer3").textContent = questions[x].answer3
-    document.getElementById("answer4").textContent = questions[x].answer4
+var x = 0;
+var guessTime; 
+var win = 0; 
+var lose = 0;
+var preventClick = []
+
+function displayQuestions () {
+    if (x === correctAnswer.length) {
+        clearInterval(guessTime);
+        document.write("finished!")
+    }
+    else {
+        preventClick = []  
+        document.getElementById("question").textContent = questions[x].question
+        document.getElementById("answer1").textContent = questions[x].answer1
+        document.getElementById("answer2").textContent = questions[x].answer2
+        document.getElementById("answer3").textContent = questions[x].answer3
+        document.getElementById("answer4").textContent = questions[x].answer4
+    }
 }
 
-var guessTime; 
-var x = 0;
+function currentQuestion(){
+    x++;
+    displayQuestions ()  
+}
 
-clearInterval(guessTime)
+function displayNextQuestion() {
+    currentQuestion (); 
+    guessTime = setInterval(currentQuestion, 1000 * 10)
+}
 
+function showAnswer() {
+    console.log(correctAnswer + selectedAnswer + " was the correct answer.")
+}
 
-$("#test").click(function () {
-    guessTime = setInterval(question, 1000 * 10)
-    displayQuestion ()
-    function question(){
-        displayQuestion ()
-        x++;
-    }
+$("#test").click(function () { 
+    displayQuestions ()
+    guessTime = setInterval(currentQuestion, 1000 * 10)
 })
 
 $(".guess").click(function () {
-    var chosen = $(this)
     selectedAnswer = $(this).text();
-  //  revealTime = setTimeout(answer, 1000 * 3);
-    if (selectedAnswer === correctAnswer[x]) {
-        //display correct answer + you're right
-        clearInterval(guessTime) 
-        document.write("You got it!")
-  //      function answer () {
-  //          function question () {
-  //              displayQuestion ()
-            }
- //       }
-  //  }
+    preventClick.push("0")
+    if (selectedAnswer === correctAnswer[x] && preventClick.length === 1) {
+        clearInterval(guessTime);
+        showAnswer()
+        setTimeout(displayNextQuestion, 1000 * 3)
+        win++;
+    }
 
-    else {
-        //display correct answer + you're wrong
-
+    else if (preventClick.length === 1) {
+        clearInterval(guessTime);
+        showAnswer()
+        setTimeout(displayNextQuestion, 1000 * 3)
+        lose++;
     }
 }) 
