@@ -5,20 +5,32 @@ body {
     background-size: cover;
     background-color: black;
     color: white;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 20px;
+    font-family: 'Do Hyeon', sans-serif;
 }
+
+.guess {
+    padding: 5px;
+    width: 400px;
+}
+
+.guess:hover {
+    background-color:rgb(186,113,63);
+    width: 400px;
+    border-radius: 15px; 
+}
+
 
 img {
-    position: relative;
+    position: absolute;
     max-width: 600px;
-    top: 15px;
+    top: 20px;
+    left: 0px;
 }
 
-#test {
+#start {
     position: relative;
     left: 270px;
-    top: -110px;
+    top: -50px;
     background-color: rgba(220,194,122);
     border-radius: 25px;  
     padding: 10px;
@@ -29,26 +41,27 @@ img {
 #score {
     position: relative;
     background: white;
-    width: 25%;
-    top: -75px;
-    height: 110px;
+    float: left;
+    width: 150px;
+    height: 125px;
+    top: 220px;
     background-color: rgba(220,194,122, 0.3);
     color:rgb(186,113,63);
     text-shadow: 1px 1px 1px #000000;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;  
-    padding-top: 25px;
+    padding-top: 15px;
     padding-left: 15px;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 #timer {
     position: relative;
     background: white;
-    font-size: 65px;
     float: right;
-    width: 25%;
-    top: -205px;
+    top: 220px;
+    font-size: 65px;
+    width: 150px;
     height: 102px;
     background-color: rgba(220,194,122, 0.3);
     color: rgb(186,113,63);
@@ -56,7 +69,7 @@ img {
     border-radius: 15px;  
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
-    padding-top: 23px;
+    padding-top: 25px;
 }
 
 #trivianight {
@@ -69,23 +82,34 @@ img {
 
 #question {
     position: relative;
-    max-width: 600px;
     background-color: rgba(197,163,128, 0.6);
     color: black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px; 
-    padding: 10px;
-    word-wrap: break-word;
+    text-align: center;
+    padding: 20px;
 }
 
-.answerwrapper {
-    position: relative;
-    margin: auto;
+.boxwrapper {
     max-width: 600px;
-    height: 340px;
+    height: 380px;
     background-color: rgba(255,255,255, 0.6);
     color: black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;  
-    padding: 20px;
+    font-size: 20px;
+}
+
+.guesswrapper {
+    position: relative;
+    left: 100px;
+    width: 200px;
+}
+
+.trythis {
+    position: absolute;
+    margin: auto;
+    height: 412px;
+    max-width: 600px;
+    position: relative;
 }

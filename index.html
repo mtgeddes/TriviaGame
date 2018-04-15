@@ -6,33 +6,46 @@
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 </head>
 <body>
+    <div class="trythis">
+            <div id='score'>
+                <div id='correct'>Correct: 0</div>
+                <br>
+                <div id='wrong'>Wrong: 0</div>
+                <br>
+                <div id='misses'>Misses: 0</div>
+            </div>
+            
+                
+        <div id="trivianight">
+            <img src="assets/images/trivia_night_logo.png" >
+            <div id='timer'></div>
+        </div>
 
-    <div id="trivianight">
-        <img src="assets/images/trivia_night_logo.png" >
-        <div id='score'>
-            <div id='wins'>Wins: </div>
-            <div id='losses'>Losses: </div>
-            <div id='misses'>Misses: </div>
-        </div>
-        <div id='timer'>
-        </div>
-        <button id='test'><strong>START</strong></button>
+        <button id='start'>START</button>
     </div>
-    <div class="answerwrapper">
-        <div id="question">
-            <p>QUESTION</p>
+
+    <div class="trythis">
+        <div class="boxwrapper">
+            <div id="question">
+                <div>Press the start button when ready</div>
+            </div>
+            <br>
+            <br>
+            <div class="guesswrapper"> 
+                <div class="guess" id="answer1"></div>
+                <br>
+                <div class="guess" id="answer2"></div>
+                <br>
+                <div class="guess" id="answer3"></div>
+                <br>
+                <div class="guess" id="answer4"></div>
+            </div>
         </div>
-        <div class="guess" id="answer1"></div>
-        <br>
-        <div class="guess" id="answer2"></div>
-        <br>
-        <div class="guess" id="answer3"></div>
-        <br>
-        <div class="guess" id="answer4"></div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
