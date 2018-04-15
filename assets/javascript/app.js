@@ -1,5 +1,5 @@
 
-
+// Questions
 var questions = [
     first = {
         question: "question one",
@@ -29,64 +29,92 @@ var questions = [
         answer3: "C answer3",
         answer4: "D answer4"
     }
-]
+];
 
-var correctAnswer = ["A answer1", "B answer2", "C answer3", "D answer4"]
+// Correct answers
+var correctAnswer = [questions[0].answer1, questions[1].answer2, questions[2].answer3, questions[3].answer4];
 
+// Variables 
 var x = 0;
-var guessTime; 
+var qTimeOnScreen; 
 var win = 0; 
-var lose = 0;
-var preventClick = []
+var loss = 0;
+var preventClick = [];
+var timeLeft;
+var timerClear;
 
+// Displays quesitons if there are questions left to display. 
 function displayQuestions () {
     if (x === correctAnswer.length) {
-        clearInterval(guessTime);
-        document.write("finished!")
+        clearInterval(qTimeOnScreen);
+        clearInterval(timerClear);
+        console.log(x);
+        $("#timer").text("");
+        $('#answer').text("");
+        $("#score").text("Correct answers: " + win + ". Incorrect answers: " + loss);
+        // *****unhide reset button****
     }
     else {
-        preventClick = []  
-        document.getElementById("question").textContent = questions[x].question
-        document.getElementById("answer1").textContent = questions[x].answer1
-        document.getElementById("answer2").textContent = questions[x].answer2
-        document.getElementById("answer3").textContent = questions[x].answer3
-        document.getElementById("answer4").textContent = questions[x].answer4
+        clearInterval(timerClear);
+        preventClick = [];
+        timeLeft = 10;  
+        $("#question").text(questions[x].question);
+        $("#answer1").text(questions[x].answer1);
+        $("#answer2").text(questions[x].answer2);
+        $("#answer3").text(questions[x].answer3);
+        $("#answer4").text(questions[x].answer4);
+        $("#timer").text(timeLeft);
+        timerClear = setInterval(timer, 1000);
     }
 }
 
+function timer () {
+    timeLeft--;
+    $("#timer").text(timeLeft);
+}
+
+// Shows the current question question
 function currentQuestion(){
     x++;
-    displayQuestions ()  
+    displayQuestions (); 
 }
 
+// Gives time limit to guess current question
 function displayNextQuestion() {
     currentQuestion (); 
-    guessTime = setInterval(currentQuestion, 1000 * 10)
+    qTimeOnScreen = setInterval(currentQuestion, 1000 * 10);
 }
 
-function showAnswer() {
-    console.log(correctAnswer + selectedAnswer + " was the correct answer.")
-}
-
+// Start the game
 $("#test").click(function () { 
-    displayQuestions ()
-    guessTime = setInterval(currentQuestion, 1000 * 10)
+    displayQuestions ();
+    qTimeOnScreen = setInterval(currentQuestion, 1000 * 10);
 })
 
+// Select an answer
 $(".guess").click(function () {
     selectedAnswer = $(this).text();
-    preventClick.push("0")
+    preventClick.push("0");
+    
     if (selectedAnswer === correctAnswer[x] && preventClick.length === 1) {
-        clearInterval(guessTime);
-        showAnswer()
-        setTimeout(displayNextQuestion, 1000 * 3)
+        clearInterval(qTimeOnScreen);
+        setTimeout(displayNextQuestion, 1000 * 3);
+        clearInterval(timerClear);
+        timeLeft = 3;
+        $("#timer").text(timeLeft);
+        timerClear = setInterval(timer, 1000);
         win++;
+        $('#answer').text("Correct! The answer was " + correctAnswer[x] + ".");
     }
 
     else if (preventClick.length === 1) {
-        clearInterval(guessTime);
-        showAnswer()
-        setTimeout(displayNextQuestion, 1000 * 3)
-        lose++;
+        clearInterval(qTimeOnScreen);
+        setTimeout(displayNextQuestion, 1000 * 3);
+        clearInterval(timerClear)
+        timeLeft = 3;
+        $("#timer").text(timeLeft);
+        timerClear = setInterval(timer, 1000);
+        loss++;
+        $('#answer').text("Incorrect. You chose " + selectedAnswer + ". The answer was " + correctAnswer[x] + ".");
     }
 }) 
