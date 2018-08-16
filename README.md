@@ -6,10 +6,6 @@ Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
 
 ### <a name="demo">GIF-Demo
 
-Example 1
-![Picture](/assets/images/demo1.PNG)
-
-Example 2
 ![Picture](/assets/images/demo2.PNG)
 
 
