@@ -1,10 +1,10 @@
 # TriviaGame
 Trivia game using JavaScript for the logic and jQuery to manipulate HTML. 
 
-* [GIF-Demo](#demo)
+* [Example](#demo)
 * [Live-Demo](#live)
 
-### <a name="demo">GIF-Demo
+### <a name="demo">Example
 
 ![Picture](/assets/images/demo2.PNG)
 
